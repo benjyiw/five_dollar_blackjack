@@ -10,7 +10,11 @@ public class Hand {
 		
 	}
 	
-	public char[] getHand() {
+	public char[] getOrigHand() {
+		
+	}
+	
+	public String[] getCleanHand() {
 		
 	}
 	
