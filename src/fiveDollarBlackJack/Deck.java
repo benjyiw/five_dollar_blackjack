@@ -10,13 +10,14 @@ public class Deck {
 		 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 
 		 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 
 		 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'}; 
-	private int index = 1;
+	private int index;
 	
 	public char drawOneCard() {
 		return deck[index++];
 	}
 	
 	public void Shuffle() {
+		index = 1;
 		List<Character> list = Arrays.asList(deck);
 		Collections.shuffle(list);
 		list.toArray(deck);
