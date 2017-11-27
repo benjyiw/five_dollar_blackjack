@@ -2,7 +2,7 @@
 * Project: $5 Blackjack
 * Group Members: Trent Greguhn, Benjamin Wesemann, Benjamin Trueman
 * Class Author : Trent Greguhn
-* Date : 11/19/2017
+* Date : 11/26/2017
 * Assignment: A08 – Patterns
 ******************************************/
 

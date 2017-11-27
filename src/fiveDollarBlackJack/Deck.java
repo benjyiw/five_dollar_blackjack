@@ -1,3 +1,11 @@
+/*****************************************
+* Project: $5 Blackjack
+* Group Members: Trent Greguhn, Benjamin Wesemann, Benjamin Trueman
+* Class Author : Benjamin Trueman
+* Date : 11/26/2017
+* Assignment: A08 – Patterns
+******************************************/
+
 package fiveDollarBlackJack;
 
 import java.util.Arrays;
