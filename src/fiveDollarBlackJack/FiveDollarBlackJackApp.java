@@ -26,6 +26,7 @@ public class FiveDollarBlackJackApp {
 		
 		System.out.print("Enter a bet ($5 minimum): $");
 		playerBet = input.nextInt();
+		// player.addcard(myDeck.drawOneCard());
 		
 		do {
 		if (playerBet < 5) {
