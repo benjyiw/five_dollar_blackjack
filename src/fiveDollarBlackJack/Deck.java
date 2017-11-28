@@ -1,3 +1,11 @@
+/*****************************************
+* Project: $5 Blackjack
+* Group Members: Trent Greguhn, Benjamin Wesemann, Ben Trueman
+* Class Author : Ben Trueman
+* Date : 11/26/2017
+* Assignment: Group Project
+******************************************/
+
 package fiveDollarBlackJack;
 
 import java.util.Arrays;
@@ -21,15 +29,19 @@ private Character[][] deck = {
 
 private int index;
 	
-//	public String drawOneCard() {
-//		return Arrays.toString(deck[index++]);
+//	public String drawOneCard() {  // return 
+//		return Arrays.toString(deck[index++]); // return card as String representation of Character array
 //	}	
 
-public String drawOneCard() {
-	return deck[index][0] + "" + deck[index++][1]; // return card as String of number + suit
+//public String drawOneCard() {
+//	return deck[index][0] + "" + deck[index++][1]; // return card as String of number + suit
+//}
+
+public Character[] drawOneCard() {  
+	return deck[index++]; // return next card as Character array
 }
 
-public void Shuffle() {
+public void shuffle() {
 	index = 1;
 	List<Character[]> list = new ArrayList<Character[]>();
     list.addAll(Arrays.asList(deck));
