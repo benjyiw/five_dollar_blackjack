@@ -38,6 +38,8 @@ public class Hand {
 	}
 
 	public void printLastCard() {
+        sleep(2000);
+
         String firstCard = hand.get(hand.size() - 1)[0].toString();
         String secondCard = hand.get(hand.size() - 1)[1].toString();
 
