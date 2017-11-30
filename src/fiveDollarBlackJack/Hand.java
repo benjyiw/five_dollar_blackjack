@@ -35,13 +35,33 @@ public class Hand {
 	public Character[][] getHand() {
 		return hand.toArray(new Character[][]{new Character[hand.size()]});
 	}
-	
-	public int[] getTotal() {
-        return total;
-	}
 
-	public boolean checkHasAce() {
-	    return hasAce;
+	public void printLastCard() {
+        System.out.printf("%c%c ", hand.get(hand.size() - 1)[0], hand.get(hand.size() - 1)[1]);
+    }
+
+    public void printAllCards() {
+        for (int i = 0; i < hand.size(); i++) {
+            System.out.printf("%c%c ", hand.get(i)[0], hand.get(i)[1]);
+        }
+    }
+
+	public int getTotal() {
+	    if (hasAce) {
+	        if (total[0] > total[1] && total[0] < 22 ) {
+	            return total[0];
+            } else {
+	            return total[1];
+            }
+        } else {
+	        return total[0];
+        }
+    }
+
+    public void clearHand() {
+	    total[0] = 0;
+	    total[1] = 0;
+	    hand.removeAll(hand);
     }
 
 }
