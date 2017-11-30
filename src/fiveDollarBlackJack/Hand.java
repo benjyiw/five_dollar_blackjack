@@ -43,6 +43,7 @@ public class Hand {
     public void printAllCards() {
         for (int i = 0; i < hand.size(); i++) {
             System.out.printf("%c%c ", hand.get(i)[0], hand.get(i)[1]);
+            sleep(2000);
         }
     }
 
@@ -62,6 +63,14 @@ public class Hand {
 	    total[0] = 0;
 	    total[1] = 0;
 	    hand.removeAll(hand);
+    }
+
+    private static void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 
 }
