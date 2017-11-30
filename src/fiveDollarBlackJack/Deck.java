@@ -31,7 +31,7 @@ public class Deck {
 	public void shuffle() {
 		index = 1;
 		List<Character[]> list = Arrays.asList(deck); // convert deck array to list
-	    Collections.shuffle(list); // shuffle that list
-	    list.toArray(deck); // convert list back to an array
+	   	Collections.shuffle(list); // shuffle that list
+		list.toArray(deck); // convert list back to an array
 	}    
 }
