@@ -64,30 +64,38 @@ public class FiveDollarBlackJackApp {
 
 		//DEALER GETS BLACKJACK
 		if (dealer.getTotal() == 21 && player.getTotal() != 21) {
-			dealer.printLastCard();
+			System.out.println("Dealer has: ");
+			dealer.printAllCards();
+			System.out.println();
+			System.out.print("You have: ");
+			player.printAllCards();
 			System.out.println();
 			System.out.println("Dealer has blackjack!"); 
 			playerLost(playerBet, playerMoney, winningsLosses);
-			System.out.println("Do you want to play again? (Y or N)");
+			System.out.print("Do you want to play again? (Y or N): ");
 			continueGame = input.next(".").charAt(0);
 		//PLAYER GETS BLACKJACK	
 		} else if(dealer.getTotal() != 21 && player.getTotal() == 21) {
+			System.out.print("You have: ");
+			player.printAllCards();
 			System.out.println();
-			System.out.println("Dealer only has ");
+			System.out.println("Dealer only has: ");
 			dealer.printAllCards();
 			System.out.println();
 			System.out.println("You got blackjack!");
 			playerWon(playerBet, playerMoney, winningsLosses);
-			System.out.println("Do you want to play again? (Y or N)");
+			System.out.print("Do you want to play again? (Y or N): ");
 			continueGame = input.next(".").charAt(0);
 		//BOTH PLAYERS HAVE BLACKJACK
 		} else if(dealer.getTotal() == 21 && player.getTotal() == 21){
+			System.out.print("You have: ");
 			player.printAllCards();
 			System.out.println();
+			System.out.println("Dealer has: ");
 			dealer.printAllCards();
 			System.out.println();
-			System.out.println("You both have blackjack. It's a push! You get your moneys back.");
-			System.out.println("Do you want to play again? (Y or N)");
+			System.out.println("You both have blackjack. It's a push! You get your bet back.");
+			System.out.print("Do you want to play again? (Y or N): ");
 			continueGame = input.next(".").charAt(0);
 		//NEITHER PLAYER HAS BLACKJACK
 		} else {
@@ -102,48 +110,67 @@ public class FiveDollarBlackJackApp {
 					sleep(2000);
 					player.addCard(myDeck.drawOneCard());
 					player.printAllCards();
+					System.out.println();
 					if(player.getTotal() > 21) {
 						System.out.println("You bust! You lose...");
 						playerLost(playerBet, playerMoney, winningsLosses);
-						System.out.println("Do you want to play again? (Y or N)");
+						System.out.print("Do you want to play again? (Y or N): ");
 						continueGame = input.next(".").charAt(0);
 						playerChoice = 'D';
 					}
 					else {
-						
+						System.out.println("You have: " + player.getTotal());
+						System.out.print("Would you like to Hit (H) or Stay (S)?: ");
+						playerChoice = input.next(".").charAt(0);
 					}
 				  break;
 			case 's':
-			case 'S': System.out.println("You have " + player.getTotal());
-					  System.out.println("Dealer has "); dealer.printAllCards();
-					  do {
-						  System.out.println("Dealer is drawing again");
+			case 'S': System.out.println("You have: " + player.getTotal());
+					  System.out.print("Dealer has: "); 
+					  dealer.printAllCards();
+					  System.out.println();
+					  if(dealer.getTotal() < 17) {
+						  do {
+						  System.out.println("Dealer is drawing again...");
 						  dealer.addCard(myDeck.drawOneCard());
+						  dealer.printAllCards();
+						  System.out.println();
 					  }while(dealer.getTotal() < 17);
+					  }
 					  if(dealer.getTotal() > 21) {
-						  System.out.println("Dealer has" + dealer.getTotal());
+						  System.out.println("Dealer has: " + dealer.getTotal());
 						  sleep(2000);
 						  System.out.println("Dealer busts... you win!");
 						  playerWon(playerBet, playerMoney, winningsLosses);
-						  System.out.println("Do you want to play again? (Y or N)");
+						  System.out.print("Do you want to play again? (Y or N): ");
+						  continueGame = input.next(".").charAt(0);
+						  playerChoice = 'D';
+					  }
+					  else if(dealer.getTotal() == player.getTotal()) {
+						  System.out.println("You both have: " + player.getTotal());
+						  System.out.println("It's a push-- you both get your bet back");
+						  System.out.print("Do you want to play again? (Y or N): ");
 						  continueGame = input.next(".").charAt(0);
 						  playerChoice = 'D';
 					  }
 					  else {
-						  System.out.println("Dealer has" + dealer.getTotal());
+						  System.out.println("Dealer has: " + dealer.getTotal());
 						  sleep(2000);
 						  System.out.println("You have: " + player.getTotal());
 						  if(dealer.getTotal() > player.getTotal()) {
 							  System.out.println("Dealer has higher hand... you lose.");
 							  playerLost(playerBet, playerMoney, winningsLosses);
-							  System.out.println("Do you want to play again? (Y or N)");
+							  System.out.print("Do you want to play again? (Y or N): ");
 							  continueGame = input.next(".").charAt(0);
 							  playerChoice = 'D';
 						  }
 						  else {
-							  System.out.println("Your hand is higher than dealer's, you win!");
+							  sleep(2000);
+							  System.out.println("Your hand is higher than the dealer's hand, you win!");
+							  sleep(2000);
 							  playerWon(playerBet, playerMoney, winningsLosses);
-							  System.out.println("Do you want to play again? (Y or N)");
+							  sleep(2000);
+							  System.out.print("Do you want to play again? (Y or N): ");
 							  continueGame = input.next(".").charAt(0);
 							  playerChoice = 'D';
 						  }
