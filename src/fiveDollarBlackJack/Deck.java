@@ -1,11 +1,3 @@
-/*****************************************
-* Project: $5 Blackjack
-* Group Members: Trent Greguhn, Benjamin Wesemann, Benjamin Trueman
-* Class Author : Benjamin Trueman
-* Date : 11/26/2017
-* Assignment: A08 – Patterns
-******************************************/
-
 package fiveDollarBlackJack;
 
 import java.util.Arrays;
@@ -19,7 +11,7 @@ public class Deck {
 //		 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 
 //		 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 
 //		 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'}; 
-private static Character[][] deck = {
+private Character[][] deck = {
 	{'A', '♠'},{'2', '♠'},{'3', '♠'},{'4', '♠'},{'5', '♠'},{'6', '♠'},{'7', '♠'},{'8', '♠'},{'9', '♠'},{'T', '♠'},
 	{'J', '♠'},{'Q', '♠'},{'K', '♠'},{'A', '♥'},{'2', '♥'},{'3', '♥'},{'4', '♥'},{'5', '♥'},{'6', '♥'},{'7', '♥'},
 	{'8', '♥'},{'9', '♥'},{'T', '♥'},{'J', '♥'},{'Q', '♥'},{'K', '♥'},{'A', '♦'},{'2', '♦'},{'3', '♦'},{'4', '♦'},
@@ -27,17 +19,21 @@ private static Character[][] deck = {
 	{'2', '♣'},{'3', '♣'},{'4', '♣'},{'5', '♣'},{'6', '♣'},{'7', '♣'},{'8', '♣'},{'9', '♣'},{'T', '♣'},{'J', '♣'},
 	{'Q', '♣'},{'K', '♣'}};
 
-public static int index;
+private int index;
 	
-//	public String drawOneCard() {
-//		return Arrays.toString(deck[index++]);
+//	public String drawOneCard() {  // return 
+//		return Arrays.toString(deck[index++]); // return card as String representation of Character array
 //	}	
 
-public String drawOneCard() {
-	return deck[index][0] + "" + deck[index++][1]; // return card as String of number + suit
+//public String drawOneCard() {
+//	return deck[index][0] + "" + deck[index++][1]; // return card as String of number + suit
+//}
+
+public Character[] drawOneCard() {  
+	return deck[index++]; // return next card as Character array
 }
 
-public void Shuffle() {
+public void shuffle() {
 	index = 1;
 	List<Character[]> list = new ArrayList<Character[]>();
     list.addAll(Arrays.asList(deck));
