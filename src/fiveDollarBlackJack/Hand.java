@@ -86,6 +86,7 @@ public class Hand {
 	    total[0] = 0;
 	    total[1] = 0;
 	    hand.removeAll(hand);
+	    hasAce = false;
     }
 
     private static void sleep(int milliseconds) {
