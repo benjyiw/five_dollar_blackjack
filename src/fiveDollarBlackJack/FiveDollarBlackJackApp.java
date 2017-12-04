@@ -289,8 +289,8 @@ public class FiveDollarBlackJackApp {
 				System.exit(0);
 			}
 			else if (playerMoney > 2500) {
-				System.out.println("Woah big spender, $2500 limit on the table. Let's start there.");
-				playerMoney = 2500;
+				System.out.println("Woah big spender, $500 limit on the table. Let's start there.");
+				playerMoney = 500;
 			}
 			else {}
 		}while(playerMoney < 5 || playerMoney > 2500);
