@@ -30,13 +30,15 @@ public class FiveDollarBlackJackApp {
 		System.out.println("Welcome to $5 Blackjack!");
 		System.out.println();
 		System.out.print("How much money do you have?: $");
+		while (!input.hasNextInt()) input.next();
 			playerMoney = input.nextInt();
-			playerMoney(playerMoney);
+			playerMoney = playerMoney(playerMoney);
 		
 		//FIXME START DO/WHILE LOOP HERE
 		//PLAYER STARTS BET
 		do {
 		System.out.print("Enter a bet ($5 minimum): $");
+		while (!input.hasNextInt()) input.next();
 			playerBet = input.nextInt();
 			playerBet = betLogic(input, playerBet, playerMoney);
 
@@ -61,6 +63,8 @@ public class FiveDollarBlackJackApp {
 		player.addCard(myDeck.drawOneCard());
 		player.printAllCards();
 		System.out.println();
+		player.getTotal();
+		dealer.getTotal();
 
 		//DEALER GETS BLACKJACK
 		if (dealer.getTotal() == 21 && player.getTotal() != 21) {
@@ -72,11 +76,12 @@ public class FiveDollarBlackJackApp {
 			sleep(2000);
 			playerMoney = playerLost(playerBet, playerMoney, winLose);
 			winLose -= playerBet;
+			System.out.println("Current Money: $" + playerMoney);
 			System.out.print("Do you want to play again? (Y or N): ");
-			continueGame = input.next(".").charAt(0);
+			continueGame = input.next().charAt(0);
+			continueGame = contGameCheck(input, continueGame);
 		//PLAYER GETS BLACKJACK	
 		} else if(dealer.getTotal() != 21 && player.getTotal() == 21) {
-			System.out.println();
 			System.out.print("Dealer only has: ");
 			dealer.printAllCards();
 			System.out.println();
@@ -84,8 +89,10 @@ public class FiveDollarBlackJackApp {
 			sleep(2000);
 			playerMoney = playerWon(playerBet, playerMoney, winLose);
 			winLose += playerBet;
+			System.out.println("Current Money: $" + playerMoney);
 			System.out.print("Do you want to play again? (Y or N): ");
-			continueGame = input.next(".").charAt(0);
+			continueGame = input.next().charAt(0);
+			continueGame = contGameCheck(input, continueGame);
 		//BOTH PLAYERS HAVE BLACKJACK
 		} else if(dealer.getTotal() == 21 && player.getTotal() == 21){
 			System.out.print("You have: ");
@@ -95,15 +102,17 @@ public class FiveDollarBlackJackApp {
 			dealer.printAllCards();
 			System.out.println();
 			sleep(2000);
+			System.out.println("Current Money: $" + playerMoney);
 			System.out.println("You both have blackjack. It's a push! You get your bet back.");
 			System.out.print("Do you want to play again? (Y or N): ");
-			continueGame = input.next(".").charAt(0);
+			continueGame = input.next().charAt(0);
+			continueGame = contGameCheck(input, continueGame);
 		//NEITHER PLAYER HAS BLACKJACK
 		} else {
 		
 		//HIT OR STAY PHASE
 		System.out.print("Would you like to Hit (H) or Stay (S)?: ");
-		playerChoice = input.next(".").charAt(0);
+		playerChoice = input.next().charAt(0);
 		do {
 			switch(playerChoice) {
 			case 'h':
@@ -114,18 +123,22 @@ public class FiveDollarBlackJackApp {
 					System.out.println();
 					if(player.getTotal() > 21) {
 						System.out.println("You have: " + player.getTotal());
+						sleep(2000);
 						System.out.println("You bust! You lose...");
+						sleep(2000);
 						playerMoney = playerLost(playerBet, playerMoney, winLose);
 						winLose -= playerBet;
+						System.out.println("Current Money: $" + playerMoney);
 						System.out.print("Do you want to play again? (Y or N): ");
-						continueGame = input.next(".").charAt(0);
+						continueGame = input.next().charAt(0);
+						continueGame = contGameCheck(input, continueGame);
 						playerChoice = 'D';
 					}
 					else {
 						System.out.println("You have: " + player.getTotal());
 						do {
 						 	System.out.print("Hit (H) or Stay (S)?: ");
-						 	playerChoice = input.next(".").charAt(0);
+						 	playerChoice = input.next().charAt(0);
 							}while(playerChoice != 'H' && playerChoice != 'h' &&
 								   playerChoice != 'S' && playerChoice != 's');
 					}
@@ -150,15 +163,20 @@ public class FiveDollarBlackJackApp {
 						  playerMoney = playerWon(playerBet, playerMoney, winLose);
 						  winLose += playerBet;
 						  sleep(2000);
+						  System.out.println("Current Money: $" + playerMoney);
 						  System.out.print("Do you want to play again? (Y or N): ");
-						  continueGame = input.next(".").charAt(0);
+						  continueGame = input.next().charAt(0);
+						  continueGame = contGameCheck(input, continueGame);
 						  playerChoice = 'D';
 					  }
 					  else if(dealer.getTotal() == player.getTotal()) {
 						  System.out.println("You both have: " + player.getTotal());
+						  sleep(2000);
 						  System.out.println("It's a push-- you get your bet back.");
+						  System.out.println("Current Money: $" + playerMoney);
 						  System.out.print("Do you want to play again? (Y or N): ");
-						  continueGame = input.next(".").charAt(0);
+						  continueGame = input.next().charAt(0);
+						  continueGame = contGameCheck(input, continueGame);
 						  playerChoice = 'D';
 					  }
 					  else {
@@ -172,8 +190,10 @@ public class FiveDollarBlackJackApp {
 							  playerMoney = playerLost(playerBet, playerMoney, winLose);
 							  winLose -= playerBet;
 							  sleep(2000);
+							  System.out.println("Current Money: $" + playerMoney);
 							  System.out.print("Do you want to play again? (Y or N): ");
-							  continueGame = input.next(".").charAt(0);
+							  continueGame = input.next().charAt(0);
+							  continueGame = contGameCheck(input, continueGame);
 							  playerChoice = 'D';
 						  }
 						  else {
@@ -183,15 +203,17 @@ public class FiveDollarBlackJackApp {
 							  playerMoney = playerWon(playerBet, playerMoney, winLose);
 							  winLose += playerBet;
 							  sleep(2000);
+							  System.out.println("Current Money: $" + playerMoney);
 							  System.out.print("Do you want to play again? (Y or N): ");
-							  continueGame = input.next(".").charAt(0);
+							  continueGame = input.next().charAt(0);
+							  continueGame = contGameCheck(input, continueGame);
 							  playerChoice = 'D';
 						  }
 					  }
 				  break;
 			default: do {
 					 	System.out.print("Please Hit (H) or Stay (S): ");
-					 	playerChoice = input.next(".").charAt(0);
+					 	playerChoice = input.next().charAt(0);
 						}while(playerChoice != 'H' && playerChoice != 'h' &&
 							   playerChoice != 'S' && playerChoice != 's');
 				 break;
@@ -201,18 +223,36 @@ public class FiveDollarBlackJackApp {
 		}
 		player.clearHand();
 		dealer.clearHand();
-		}while(continueGame == 'Y' || continueGame == 'y' && playerMoney > 5);
+		}while(continueGame == 'Y' || continueGame == 'y' && playerMoney >= 5);
 		
 		//WRAPPING UP GAME AND TOTALS
+		
+		endOfGames(playerMoney, winLose);
+		
+	}
+
+	private static char contGameCheck(Scanner input, char continueGame) {
+		if (continueGame != 'Y' || continueGame != 'y' ||
+			  continueGame != 'N' || continueGame != 'n') {
+			  do {
+			 	System.out.print("I'm sorry-- did you want to keep playing? Yes (Y) or No (N): ");
+			 	continueGame = input.next().charAt(0);
+				}while(continueGame != 'Y' && continueGame != 'y' &&
+					   continueGame != 'N' && continueGame != 'n');
+		  }
+		  else {}
+		return continueGame;
+	}
+
+	private static void endOfGames(int playerMoney, int winLose) {
 		if(playerMoney < 5) {
 			System.out.println("You don't have enough money to play again...");
 		}
 		System.out.println("That's too bad-- but let's look at how you did!");
 		sleep(3000);
-		//FIXME (Need to fix playerWon/playerLost methods)
 		System.out.println("Total winnings/losses: " + winLose);
 		sleep(2000);
-		System.out.println("Current money: $" + (playerMoney));
+		System.out.println("Final Money: $" + (playerMoney));
 		sleep(2000);
 		if(playerMoney < 0) {
 			System.out.println("Looks like you owe us money... better speak to our cashier.");
@@ -223,8 +263,6 @@ public class FiveDollarBlackJackApp {
 		else {
 			System.out.println("Nice, well done! See you next time!");
 		}
-		input.close();
-		
 	}
 
 	private static int playerWon(int playerBet, int playerMoney, int winLose) {
@@ -243,15 +281,21 @@ public class FiveDollarBlackJackApp {
 		return playerMoney;
 	}
 	
-	private static void playerMoney(int playerMoney) {
+	private static int playerMoney(int playerMoney) {
 		do {
 			if(playerMoney < 5) {
 				System.out.print("You have $" + playerMoney + 
 						"? You need at least $5 to play. Get outta here!");
 				System.exit(0);
 			}
+			else if (playerMoney > 2500) {
+				System.out.println("Woah big spender, $2500 limit on the table. Let's start there.");
+				playerMoney = 2500;
+			}
 			else {}
-		}while(playerMoney < 5);
+		}while(playerMoney < 5 || playerMoney > 2500);
+		
+		return playerMoney;
 	}
 
 		private static int betLogic(Scanner input, int playerBet, int playerMoney) {
@@ -268,15 +312,7 @@ public class FiveDollarBlackJackApp {
 			
 			return playerBet;
 		}
-	
-/*	public static void userBet(int playerBet) {
-		Scanner input = new Scanner(System.in);
-		do {
-		System.out.println("Enter a bet ($5 minimum): $");
-		playerBet = input.nextInt();
-		}while(playerBet < 5);
-		input.close();
-	}*/
+
 	
 	public static void sleep(int milliseconds) {
 		try {
