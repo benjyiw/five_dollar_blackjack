@@ -3,7 +3,7 @@
 * Group Members: Trent Greguhn, Benjamin Wesemann, Benjamin Trueman
 * Class Author : Trent Greguhn
 * Date : 11/26/2017
-* Assignment: A08 – Patterns
+* Assignment: Group Project
 ******************************************/
 
 package fiveDollarBlackJack;
