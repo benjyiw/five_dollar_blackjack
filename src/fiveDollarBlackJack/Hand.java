@@ -1,3 +1,11 @@
+/*****************************************
+* Project: $5 Blackjack
+* Group Members: Trent Greguhn, Benjamin Wesemann, Ben Trueman
+* Class Author : Ben Wesemann
+* Date : 11/29/2017
+* Assignment: Group Project
+******************************************/
+
 package fiveDollarBlackJack;
 
 import java.util.ArrayList;
