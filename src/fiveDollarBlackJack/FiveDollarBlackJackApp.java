@@ -31,7 +31,6 @@ public class FiveDollarBlackJackApp {
 		playerMoney = input.nextInt();
 		playerMoney = playerMoney(playerMoney);
 		
-		//FIXME START DO/WHILE LOOP HERE
 		//PLAYER STARTS BET
 		do {
 		System.out.print("Enter a bet ($5 minimum): $");
