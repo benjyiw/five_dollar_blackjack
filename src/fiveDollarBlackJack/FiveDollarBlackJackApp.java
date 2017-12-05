@@ -146,7 +146,16 @@ public class FiveDollarBlackJackApp {
 					}
 				  break;
 			case 'd':
-			case 'D': System.out.println("Doubling bet and drawing one card...");
+			case 'D': if((playerBet * 2) > playerMoney) {
+						System.out.println("You can't double your bet, you don't have the money...");
+						do {
+						 	System.out.print("Hit (H) or Stay (S)?: ");
+						 	playerChoice = input.next().charAt(0);
+							}while(playerChoice != 'H' && playerChoice != 'h' &&
+								   playerChoice != 'S' && playerChoice != 's');
+					}
+				else {
+					System.out.println("Doubling bet and drawing one card...");
 					System.out.println("Drawing...");
 					sleep(2000);
 					player.addCard(myDeck.drawOneCard());
@@ -234,6 +243,7 @@ public class FiveDollarBlackJackApp {
 						  }
 					  }
 					}
+					}
 					break;
 			case 's':
 			case 'S': System.out.print("Dealer has: "); 
@@ -311,7 +321,8 @@ public class FiveDollarBlackJackApp {
 				 break;
 			}
 		}while(playerChoice == 'H' || playerChoice == 'h'
-				|| playerChoice == 'S' || playerChoice == 's');
+				|| playerChoice == 'S' || playerChoice == 's'
+				|| playerChoice == 'D' || playerChoice == 'd');
 		}
 		player.clearHand();
 		dealer.clearHand();
