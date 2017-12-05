@@ -113,7 +113,7 @@ public class FiveDollarBlackJackApp {
 		} else {
 		
 		//HIT OR STAY PHASE
-		System.out.print("Would you like to Hit (H) or Stay (S)?: ");
+		System.out.print("Would you like to Hit (H) or Stay (S) or Double (D)?: ");
 		playerChoice = input.next().charAt(0);
 		do {
 			switch(playerChoice) {
@@ -157,7 +157,7 @@ public class FiveDollarBlackJackApp {
 						sleep(2000);
 						System.out.println("You bust! You lose...");
 						sleep(2000);
-						playerMoney = playerLost(playerBet, playerMoney, winLose);
+						playerMoney = playerLost((playerBet * 2), playerMoney, winLose);
 						winLose -= (playerBet * 2);
 						System.out.println("Current Money: $" + playerMoney);
 						System.out.print("Do you want to play again? (Y or N): ");
@@ -183,7 +183,7 @@ public class FiveDollarBlackJackApp {
 						  sleep(2000);
 						  System.out.println("Dealer busts... you win!");
 						  sleep(2000);
-						  playerMoney = playerWon(playerBet, playerMoney, winLose);
+						  playerMoney = playerWon((playerBet * 2), playerMoney, winLose);
 						  winLose += (playerBet * 2);
 						  sleep(2000);
 						  System.out.println("Current Money: $" + playerMoney);
@@ -210,7 +210,7 @@ public class FiveDollarBlackJackApp {
 							  sleep(2000);
 							  System.out.println("Dealer has higher hand... you lose.");
 							  sleep(2000);
-							  playerMoney = playerLost(playerBet, playerMoney, winLose);
+							  playerMoney = playerLost((playerBet * 2), playerMoney, winLose);
 							  winLose -= (playerBet * 2);
 							  sleep(2000);
 							  System.out.println("Current Money: $" + playerMoney);
@@ -223,7 +223,7 @@ public class FiveDollarBlackJackApp {
 							  sleep(2000);
 							  System.out.println("Your hand is higher than the dealer's hand, you win!");
 							  sleep(2000);
-							  playerMoney = playerWon(playerBet, playerMoney, winLose);
+							  playerMoney = playerWon((playerBet * 2), playerMoney, winLose);
 							  winLose += (playerBet * 2);
 							  sleep(2000);
 							  System.out.println("Current Money: $" + playerMoney);
@@ -234,6 +234,7 @@ public class FiveDollarBlackJackApp {
 						  }
 					  }
 					}
+					break;
 			case 's':
 			case 'S': System.out.print("Dealer has: "); 
 					  dealer.printAllCards();
