@@ -1,9 +1,9 @@
 /*****************************************
 * Project: $5 Blackjack
-* Group Members: Trent Greguhn, Benjamin Wesemann, Benjamin Trueman
+* Group Members: Trent Greguhn, Benjamin Wesemann, Ben Trueman
 * Class Author : Trent Greguhn
-* Date : 11/26/2017
-* Assignment: A08 – Patterns
+* Date : 11/29/2017
+* Assignment: Group Project
 ******************************************/
 
 package fiveDollarBlackJack;
@@ -134,7 +134,7 @@ public class FiveDollarBlackJackApp {
 						System.out.print("Do you want to play again? (Y or N): ");
 						continueGame = input.next().charAt(0);
 						continueGame = contGameCheck(input, continueGame);
-						playerChoice = 'D';
+						playerChoice = 'A';
 					}
 					else {
 						System.out.println("You have: " + player.getTotal());
@@ -145,6 +145,95 @@ public class FiveDollarBlackJackApp {
 								   playerChoice != 'S' && playerChoice != 's');
 					}
 				  break;
+			case 'd':
+			case 'D': System.out.println("Doubling bet and drawing one card...");
+					System.out.println("Drawing...");
+					sleep(2000);
+					player.addCard(myDeck.drawOneCard());
+					player.printAllCards();
+					System.out.println();
+					if(player.getTotal() > 21) {
+						System.out.println("You have: " + player.getTotal());
+						sleep(2000);
+						System.out.println("You bust! You lose...");
+						sleep(2000);
+						playerMoney = playerLost(playerBet, playerMoney, winLose);
+						winLose -= (playerBet * 2);
+						System.out.println("Current Money: $" + playerMoney);
+						System.out.print("Do you want to play again? (Y or N): ");
+						continueGame = input.next().charAt(0);
+						continueGame = contGameCheck(input, continueGame);
+						playerChoice = 'A';
+					}
+					else {
+					  System.out.println("You have: " + player.getTotal());
+					  System.out.print("Dealer has: "); 
+					  dealer.printAllCards();
+					  System.out.println();
+					  if(dealer.getTotal() < 17) {
+						  do {
+						  System.out.println("Dealer is drawing again...");
+						  dealer.addCard(myDeck.drawOneCard());
+						  dealer.printAllCards();
+						  System.out.println();
+					  }while(dealer.getTotal() < 17);
+					  }
+					  if(dealer.getTotal() > 21) {
+						  System.out.println("Dealer has: " + dealer.getTotal());
+						  sleep(2000);
+						  System.out.println("Dealer busts... you win!");
+						  sleep(2000);
+						  playerMoney = playerWon(playerBet, playerMoney, winLose);
+						  winLose += (playerBet * 2);
+						  sleep(2000);
+						  System.out.println("Current Money: $" + playerMoney);
+						  System.out.print("Do you want to play again? (Y or N): ");
+						  continueGame = input.next().charAt(0);
+						  continueGame = contGameCheck(input, continueGame);
+						  playerChoice = 'A';
+					  }
+					  else if(dealer.getTotal() == player.getTotal()) {
+						  System.out.println("You both have: " + player.getTotal());
+						  sleep(2000);
+						  System.out.println("It's a push-- you get your bet back.");
+						  System.out.println("Current Money: $" + playerMoney);
+						  System.out.print("Do you want to play again? (Y or N): ");
+						  continueGame = input.next().charAt(0);
+						  continueGame = contGameCheck(input, continueGame);
+						  playerChoice = 'A';
+					  }
+					  else {
+						  System.out.println("Dealer has: " + dealer.getTotal());
+						  sleep(2000);
+						  System.out.println("You have: " + player.getTotal());
+						  if(dealer.getTotal() > player.getTotal()) {
+							  sleep(2000);
+							  System.out.println("Dealer has higher hand... you lose.");
+							  sleep(2000);
+							  playerMoney = playerLost(playerBet, playerMoney, winLose);
+							  winLose -= (playerBet * 2);
+							  sleep(2000);
+							  System.out.println("Current Money: $" + playerMoney);
+							  System.out.print("Do you want to play again? (Y or N): ");
+							  continueGame = input.next().charAt(0);
+							  continueGame = contGameCheck(input, continueGame);
+							  playerChoice = 'A';
+						  }
+						  else {
+							  sleep(2000);
+							  System.out.println("Your hand is higher than the dealer's hand, you win!");
+							  sleep(2000);
+							  playerMoney = playerWon(playerBet, playerMoney, winLose);
+							  winLose += (playerBet * 2);
+							  sleep(2000);
+							  System.out.println("Current Money: $" + playerMoney);
+							  System.out.print("Do you want to play again? (Y or N): ");
+							  continueGame = input.next().charAt(0);
+							  continueGame = contGameCheck(input, continueGame);
+							  playerChoice = 'A';
+						  }
+					  }
+					}
 			case 's':
 			case 'S': System.out.print("Dealer has: "); 
 					  dealer.printAllCards();
@@ -169,7 +258,7 @@ public class FiveDollarBlackJackApp {
 						  System.out.print("Do you want to play again? (Y or N): ");
 						  continueGame = input.next().charAt(0);
 						  continueGame = contGameCheck(input, continueGame);
-						  playerChoice = 'D';
+						  playerChoice = 'A';
 					  }
 					  else if(dealer.getTotal() == player.getTotal()) {
 						  System.out.println("You both have: " + player.getTotal());
@@ -179,7 +268,7 @@ public class FiveDollarBlackJackApp {
 						  System.out.print("Do you want to play again? (Y or N): ");
 						  continueGame = input.next().charAt(0);
 						  continueGame = contGameCheck(input, continueGame);
-						  playerChoice = 'D';
+						  playerChoice = 'A';
 					  }
 					  else {
 						  System.out.println("Dealer has: " + dealer.getTotal());
@@ -196,7 +285,7 @@ public class FiveDollarBlackJackApp {
 							  System.out.print("Do you want to play again? (Y or N): ");
 							  continueGame = input.next().charAt(0);
 							  continueGame = contGameCheck(input, continueGame);
-							  playerChoice = 'D';
+							  playerChoice = 'A';
 						  }
 						  else {
 							  sleep(2000);
@@ -209,7 +298,7 @@ public class FiveDollarBlackJackApp {
 							  System.out.print("Do you want to play again? (Y or N): ");
 							  continueGame = input.next().charAt(0);
 							  continueGame = contGameCheck(input, continueGame);
-							  playerChoice = 'D';
+							  playerChoice = 'A';
 						  }
 					  }
 				  break;
