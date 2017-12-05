@@ -10,7 +10,6 @@ package fiveDollarBlackJack;
 
 import java.util.Scanner;
 
-
 public class FiveDollarBlackJackApp {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -24,15 +23,13 @@ public class FiveDollarBlackJackApp {
 		Hand dealer = new Hand();
 		Hand player = new Hand();
 		
-		//FIXME: If player enters non-int, "I asked for money, not alphabet soup. How much money ya got?"
-		//FIXME: Fix playerLose, playerWin, winLoseLose, winLoseWin
 		// PLAYER ESTABLISHES STARTING MONEY
 		System.out.println("Welcome to $5 Blackjack!");
 		System.out.println();
 		System.out.print("How much money do you have?: $");
 		while (!input.hasNextInt()) input.next();
-			playerMoney = input.nextInt();
-			playerMoney = playerMoney(playerMoney);
+		playerMoney = input.nextInt();
+		playerMoney = playerMoney(playerMoney);
 		
 		//FIXME START DO/WHILE LOOP HERE
 		//PLAYER STARTS BET
@@ -232,15 +229,17 @@ public class FiveDollarBlackJackApp {
 	}
 
 	private static char contGameCheck(Scanner input, char continueGame) {
-		if (continueGame != 'Y' || continueGame != 'y' ||
-			  continueGame != 'N' || continueGame != 'n') {
-			  do {
-			 	System.out.print("I'm sorry-- did you want to keep playing? Yes (Y) or No (N): ");
-			 	continueGame = input.next().charAt(0);
-				}while(continueGame != 'Y' && continueGame != 'y' &&
-					   continueGame != 'N' && continueGame != 'n');
-		  }
-		  else {}
+			do {
+			if (continueGame != 'Y' && continueGame != 'y' &&
+				continueGame != 'N' && continueGame != 'n') {
+				 	System.out.print("I'm sorry-- did you want to keep playing? Yes (Y) or No (N): ");
+				 	continueGame = input.next().charAt(0);
+			}
+			else { 
+				return continueGame; 
+			}
+			}while (continueGame != 'Y' && continueGame != 'y' &&
+				continueGame != 'N' && continueGame != 'n');
 		return continueGame;
 	}
 
