@@ -27,14 +27,20 @@ public class FiveDollarBlackJackApp {
 		System.out.println("Welcome to $5 Blackjack!");
 		System.out.println();
 		System.out.print("How much money do you have?: $");
-		while (!input.hasNextInt()) input.next();
+		while (!input.hasNextInt()) {
+			System.out.print("I asked for money, not alphabet soup... how much ya got?: $");
+			input.next();
+		}
 		playerMoney = input.nextInt();
 		playerMoney = playerMoney(playerMoney);
 		
 		//PLAYER STARTS BET
 		do {
 		System.out.print("Enter a bet ($5 minimum): $");
-		while (!input.hasNextInt()) input.next();
+		while (!input.hasNextInt()) {
+			System.out.print("I asked for money, not alphabet soup... how much ya bettin'?: $");
+			input.next();
+		}
 			playerBet = input.nextInt();
 			playerBet = betLogic(input, playerBet, playerMoney);
 
