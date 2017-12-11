@@ -418,7 +418,6 @@ public class FiveDollarBlackJackApp {
 			return playerBet;
 		}
 
-	
 	public static void sleep(int milliseconds) {
 		try {
 		    Thread.sleep(milliseconds);                 //1000 milliseconds is one second.
